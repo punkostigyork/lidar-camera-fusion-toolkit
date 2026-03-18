@@ -1,0 +1,36 @@
+# --- Python & Environment ---
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv/
+env/
+venv/
+build/
+dist/
+*.egg-info/
+
+# --- Autonomous Driving Data (CRITICAL) ---
+# We ignore the entire data folder but keep the directory structure
+data/*
+!data/.gitkeep
+
+# Ignore specific sensor formats
+*.bin
+*.pcd
+*.ply
+*.png
+*.jpg
+*.jpeg
+
+# --- Project Specifics ---
+# Ignore the output reconstructions or logs
+outputs/
+logs/
+*.log
+
+# --- IDEs & System ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
