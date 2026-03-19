@@ -18,17 +18,15 @@ class SequenceProcessor:
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         out = cv2.VideoWriter(output_path, fourcc, 10.0, (w, h))
         
-        print(f"🎬 Processing {num_frames} frames with Enhanced Fusion...")
+        print(f"Processing {num_frames} frames with Enhanced Fusion...")
         
         for i in tqdm(range(num_frames)):
             img = self.loader.load_image(i)
             pc = self.loader.load_lidar(i)
             boxes = self.labels.get_boxes_for_frame(i)
             
-            # --- PHASE 1: LiDAR Projection with Ground Filter ---
             pixels, depths = self.projector.project_to_image(pc)
             
-            # THE GROUND FILTER:
             # In KITTI LiDAR coordinates, Z is height. 
             # Sensor is ~1.7m up, so Z > -1.55 removes the asphalt.
             ground_mask = pc[:, 2] > -1.55 
@@ -45,7 +43,6 @@ class SequenceProcessor:
                 color_val = int(min(valid_d[j], 40) / 40 * 255)
                 cv2.circle(img, (x, y), 1, (255 - color_val, color_val, 255), -1)
             
-            # --- PHASE 2: 3D Boxes + Distance Labels ---
             for box in boxes:
                 corners_3d = self.projector.get_3d_box_corners(box)
                 corners_2d, depths_box = self.projector.project_to_image(corners_3d)
@@ -59,13 +56,10 @@ class SequenceProcessor:
                     else:
                         color = (255, 0, 0) # Blue
                     
-                    # 1. Draw the Wireframe
                     img = self.projector.draw_3d_box(img, corners_2d, color=color, thickness=2)
-                    
-                    # 2. Draw the Label (using the new method we'll add to projector)
                     img = self.projector.draw_label(img, box, corners_2d)
             
             out.write(img)
             
         out.release()
-        print(f"✅ Video saved to {output_path}")
+        print(f"Video saved to {output_path}")

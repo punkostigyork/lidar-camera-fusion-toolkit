@@ -28,7 +28,7 @@ The toolkit provides a comprehensive "Perception Dashboard" consisting of:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://gitlab.com/your-username/lidar-camera-fusion-toolkit.git](https://gitlab.com/your-username/lidar-camera-fusion-toolkit.git)
+    git clone [https://github.com/punkostigyork/lidar-camera-fusion-toolkit](https://github.com/punkostigyork/lidar-camera-fusion-toolkit)
     cd lidar-camera-fusion-toolkit
     ```
 
@@ -68,7 +68,21 @@ The toolkit provides a comprehensive "Perception Dashboard" consisting of:
 
 ## Usage
 
-1.  **Data Setup:** Place your KITTI sample data in the `data/kitti_sample` folder. Ensure the `tracklet_labels.xml` file is included.
+### 1. Data Setup
+The project expects the KITTI tracking sample data (or full dataset) to be organized in a specific hierarchy. Download the **"data_drive_0001"** (or similar) and the **"tracklets"** XML from the [KITTI Website](https://www.cvlibs.net/datasets/kitti/raw_data.php) and arrange them as follows:
+
+```text
+data/kitti_sample/
+├── calib/
+│   ├── 0000.txt, 0001.txt...    # Calibration files
+├── image_02/
+│   └── data/
+│       ├── 0000000000.png...    # Left Color Camera images
+├── velodyne_points/
+│   └── data/
+│       ├── 0000000000.bin...    # LiDAR point clouds (binary format)
+└── tracklet_labels.xml          # Ground truth 3D bounding box labels
+```
 2.  **Verification:** Open `notebooks/notebook.ipynb`. Run the verification cells to check LiDAR alignment and 3D box accuracy on a single frame.
 3.  **Production:** Run the final cell to initiate the `SequenceProcessor`, which will render the entire sequence into an MP4 file in the `outputs/` folder.
 

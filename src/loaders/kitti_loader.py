@@ -43,14 +43,12 @@ class KittiCalib:
                 if ':' not in line: continue
                 key, val = line.split(':', 1)
                 try:
-                    # This try-except block fixes the '09-Jan-2012' error
                     float_vals = np.array([float(x) for x in val.split()])
                     if len(float_vals) > 0:
                         data[key.strip()] = float_vals
                 except ValueError:
                     continue
 
-        # Map 'P_rect_02' to 'P2' if necessary
         p_key = 'P2' if 'P2' in data else 'P_rect_02'
         r_key = 'R0_rect' if 'R0_rect' in data else 'R_rect_00'
 

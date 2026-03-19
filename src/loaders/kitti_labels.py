@@ -21,13 +21,12 @@ class KittiLabels:
                 'poses': []
             }
             
-            # Extract position and rotation for every frame this object exists
             for pose in item.find('poses').findall('item'):
                 obj['poses'].append({
                     'tx': float(pose.find('tx').text),
                     'ty': float(pose.find('ty').text),
                     'tz': float(pose.find('tz').text),
-                    'ry': float(pose.find('ry').text) # Rotation around Y (Yaw)
+                    'ry': float(pose.find('ry').text)
                 })
             objects.append(obj)
         return objects

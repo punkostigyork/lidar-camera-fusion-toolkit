@@ -10,8 +10,7 @@ build/
 dist/
 *.egg-info/
 
-# --- Autonomous Driving Data (CRITICAL) ---
-# Ignore the data folder content but keep the folder structure if needed
+# --- Autonomous Driving Data ---
 data/*
 !data/.gitkeep
 
@@ -24,8 +23,6 @@ data/*
 *.jpeg
 
 # --- ASSETS ALLOW-LIST ---
-# We force Git to track images inside the assets folder 
-# even though we ignored them globally above
 !assets/
 !assets/*.png
 !assets/*.jpg
