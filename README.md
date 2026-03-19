@@ -14,7 +14,6 @@ A high-performance Python toolkit for 3D object detection visualization and sens
 * **Automated Video Processor:** Batch processing of image sequences into high-definition `.mp4` perception dashboards.
 * **Coordinate Transformations:** Seamless handling of transitions between LiDAR (X-Forward, Y-Left) and Camera (Z-Forward) coordinate systems.
 
----
 
 ## System Overview
 
@@ -22,13 +21,12 @@ The toolkit provides a comprehensive "Perception Dashboard" consisting of:
 1.  **Front-Facing Camera View:** Projected 3D wireframes with object type and metric distance labels.
 2.  **Top-Down BEV Map:** A spatial map showing the ego-vehicle (white triangle) and surrounding obstacles in a metric grid.
 
----
 
 ## Installation
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/punkostigyork/lidar-camera-fusion-toolkit](https://github.com/punkostigyork/lidar-camera-fusion-toolkit)
+    git clone https://github.com/punkostigyork/lidar-camera-fusion-toolkit
     cd lidar-camera-fusion-toolkit
     ```
 
@@ -43,7 +41,6 @@ The toolkit provides a comprehensive "Perception Dashboard" consisting of:
     pip install -r requirements.txt
     ```
 
----
 
 ## Project Structure
 
@@ -64,7 +61,6 @@ The toolkit provides a comprehensive "Perception Dashboard" consisting of:
 
 ```
 
----
 
 ## Usage
 
@@ -86,7 +82,6 @@ data/kitti_sample/
 2.  **Verification:** Open `notebooks/notebook.ipynb`. Run the verification cells to check LiDAR alignment and 3D box accuracy on a single frame.
 3.  **Production:** Run the final cell to initiate the `SequenceProcessor`, which will render the entire sequence into an MP4 file in the `outputs/` folder.
 
----
 
 ## The Math Behind the Fusion
 
@@ -100,7 +95,19 @@ $$\mathbf{x} = P_2 \times R_{0\_rect} \times Tr_{velo\_to\_cam} \times \mathbf{X
 
 For the **Bird's Eye View**, we perform a dimensionality reduction by mapping the LiDAR $X$ (forward) and $Y$ (lateral) coordinates directly to a pixel grid, applying a scaling factor (e.g., 10px/meter) to maintain metric consistency.
 
----
+
+## 📄 Cite
+
+```bibtex
+@misc{lidar-camera-fusion-toolkit,
+  author = {Györk Pünkösti},
+  title = {KITTI LiDAR-Camera Fusion Toolkit },
+  year = {2026},
+  publisher = {GitHub},
+  url = {https://github.com/punkostigyork/lidar-camera-fusion-toolkit}
+}
+```
+
 
 ## License
 MIT
